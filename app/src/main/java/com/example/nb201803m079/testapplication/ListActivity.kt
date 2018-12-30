@@ -1,5 +1,6 @@
 package com.example.nb201803m079.testapplication
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -14,5 +15,10 @@ class ListActivity : AppCompatActivity() {
 
         Log.d("nnnn", userName)
         textViewName2.text = userName + "さんの投稿一覧"
+
+        buttonToCreate.setOnClickListener {
+            val intent = Intent(this@ListActivity, EditActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
