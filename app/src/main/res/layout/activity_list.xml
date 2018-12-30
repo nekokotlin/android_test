@@ -7,12 +7,12 @@
         android:layout_height="match_parent"
         tools:context=".ListActivity">
 
-    <ListView
-            android:layout_width="357dp"
-            android:layout_height="441dp" tools:layout_editor_absoluteY="58dp" tools:layout_editor_absoluteX="16dp"/>
     <TextView
-            android:text="投稿一覧"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" tools:layout_editor_absoluteY="16dp"
-            tools:layout_editor_absoluteX="163dp" android:id="@+id/textView4"/>
+            tools:layout_editor_absoluteX="163dp" android:id="@+id/textViewName2"/>
+    <ListView
+            android:layout_width="368dp"
+            android:layout_height="516dp" tools:layout_editor_absoluteY="43dp" tools:layout_editor_absoluteX="8dp"
+            android:id="@+id/listView"/>
 </android.support.constraint.ConstraintLayout>

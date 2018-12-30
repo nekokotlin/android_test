@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 import com.squareup.picasso.Picasso
-
+var userName:String = ""
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,7 +14,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         button.setOnClickListener {
-            textView.text = editText.text.toString() + "さん、ようこそ"
+            userName = editText.text.toString()
+            textView.text = userName + "さん、ようこそ"
         }
         button2.setOnClickListener {
 //            val imageView = convertView.findViewById(R.id.image) as ImageView
@@ -32,7 +33,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         button4.setOnClickListener {
-            val intent = Intent(MainActivity@this, EditActivity::class.java)
+            userName = editText.text.toString()
+            val intent = Intent(MainActivity@this, ListActivity::class.java)
+            startActivity(intent)
         }
 
 
