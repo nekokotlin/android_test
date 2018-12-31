@@ -34,7 +34,6 @@ class EditActivity : AppCompatActivity(), View.OnClickListener {
         buttonSubmit.setOnClickListener(this)
         buttonBack.setOnClickListener { finish() }
 
-
     }
 
 
@@ -57,6 +56,7 @@ class EditActivity : AppCompatActivity(), View.OnClickListener {
 
 
         } else {
+
             AlertDialog.Builder(this)
                 .setTitle("投稿の確認")
                 .setMessage("投稿しますか？")
@@ -79,8 +79,6 @@ class EditActivity : AppCompatActivity(), View.OnClickListener {
                 }
                 .setNegativeButton("Cancel", null)
                 .show()
-
-//            Toast.makeText(this, "投稿が完了しました", Toast.LENGTH_SHORT)
 
         }
 

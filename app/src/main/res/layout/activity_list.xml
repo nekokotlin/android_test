@@ -12,11 +12,12 @@
             android:layout_height="wrap_content"
             android:id="@+id/textViewName2"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="16dp" android:layout_marginLeft="16dp" android:layout_marginStart="16dp"/>
+            android:layout_marginTop="16dp" android:layout_marginLeft="16dp" android:layout_marginStart="16dp"
+            />
     <ListView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:id="@+id/ListViewTweet" android:layout_marginTop="8dp"
+            android:id="@+id/ListViewTweet" android:layout_marginTop="118dp"
             app:layout_constraintTop_toBottomOf="@+id/textViewName2" android:layout_marginBottom="8dp"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="1dp" app:layout_constraintBottom_toBottomOf="parent"
@@ -28,12 +29,20 @@
             android:id="@+id/buttonToCreate"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginEnd="89dp" android:layout_marginRight="89dp"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            android:focusable="false"
+            android:clickable="false"
+            android:focusableInTouchMode="false"
+    />
     <Button
             android:text="戻る"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/buttonBackMain"
             app:layout_constraintBaseline_toBaselineOf="@+id/buttonToCreate"
-            app:layout_constraintStart_toEndOf="@+id/buttonToCreate"/>
+            app:layout_constraintStart_toEndOf="@+id/buttonToCreate"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+    />
 </android.support.constraint.ConstraintLayout>

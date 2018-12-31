@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">TestApplication</string>
+    <string name="intent_key_content">intent_key_content</string>
+    <string name="intent_key_position">intent_key_position</string>
+    <string name="intent_key_date">intent_key_date</string>
+    <string name="intent_key_status">intent_key_status</string>
+
+
+
 </resources>
