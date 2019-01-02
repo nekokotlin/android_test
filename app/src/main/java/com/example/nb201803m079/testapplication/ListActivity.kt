@@ -17,67 +17,46 @@ import io.realm.RealmResults
 import kotlinx.android.synthetic.main.activity_edit.*
 import kotlinx.android.synthetic.main.activity_list.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 //import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion.User
 
-
-
-
 class ListActivity: AppCompatActivity(), AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
-
 
     lateinit var realm: Realm
     lateinit var tweets: RealmResults<tweetDB>
+    lateinit var adapter: ArrayAdapter<String>
+    lateinit var tweet_list: ArrayList<String>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
         Realm.init(this)
         textViewName2.text = userName + "さんの投稿一覧"
-        
-    }
 
+
+    }
 
     override fun onResume() {
         super.onResume()
 
         realm = Realm.getDefaultInstance()
-
-        //adapterの使い方
-        //中身(配列)を用意する
-        //adapterインスタンスを作成する
-        //引数はcontext、リストのデザイン、どの配列を渡すか
-        //ビューのListViewに指定したID.adapter = adapter
-        //val items = Array(20, { i -> "Title-$i" })
-        //val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items)
-        //ListViewTweet.adapter = adapter
-
         tweets = realm.where(tweetDB::class.java).findAll()
-
-//        val adapter = ArrayAdapter<tweetDB>(this,android.R.layout.two_line_list_item, tweets)
-
-//        val sAdapter = SimpleAdapter
-
-//        ListViewTweet.adapter = adapter
-
-//            new String[]{"right", "main", "sub"}, new int[]{R.id.item_right, R.id.item_main, R.id.item_sub});
-
-        val tweet_list = ArrayList<String>()
+        tweet_list = ArrayList<String>()
 
         tweets.forEach {
             tweet_list.add(it.id.toString() + ":" + it.content)
         }
 
-        val adapter_tweet = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tweet_list)
-        ListViewTweet.adapter = adapter_tweet
-
-        ListViewTweet.setOnItemClickListener { parent: AdapterView<*>?, view:View?, position: Int, id:Long ->
-            startActivity((Intent(this, EditActivity::class.java)))
-    }
+        adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tweet_list)
+        ListViewTweet.adapter = adapter
 
         buttonBackMain.setOnClickListener {
             finish()
         }
+        ListViewTweet.onItemClickListener = this
+        ListViewTweet.onItemLongClickListener = this
 
     }
 
@@ -87,23 +66,20 @@ class ListActivity: AppCompatActivity(), AdapterView.OnItemClickListener, Adapte
         realm.close()
     }
 
-
-    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        Log.d("ここ", "nnn")
-        val selectedTweetDB = tweets[position]!!
+    override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        val selectedTweetDB = tweets[p2]!!
         val content = selectedTweetDB.content
         val date = Date()
         val status = 0
 
         val intent = Intent(this@ListActivity, EditActivity::class.java)
-//            .apply{
-//            putExtra(getString(R.string.intent_key_content), content)
-//            putExtra(getString(R.string.intent_key_date), date)
-//            putExtra(getString(R.string.intent_key_position), position)
-//            putExtra(getString(R.string.intent_key_status), status)
-//        }
+            .apply {
+                putExtra(getString(R.string.intent_key_content), content)
+                putExtra(getString(R.string.intent_key_date), date)
+                putExtra(getString(R.string.intent_key_position), p2)
+                putExtra(getString(R.string.intent_key_status), status)
+            }
         startActivity(intent)
-
     }
 
     override fun onItemLongClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long): Boolean {
@@ -115,17 +91,17 @@ class ListActivity: AppCompatActivity(), AdapterView.OnItemClickListener, Adapte
                 realm.beginTransaction()
                 selectedTweetDB.deleteFromRealm()
                 realm.commitTransaction()
-//                word_list.removeAt(p2)
+                tweet_list.removeAt(position)
+                ListViewTweet.adapter = adapter
             }
-            setNegativeButton("NOニャー"){ dialog, which ->  }
+            setNegativeButton("NO"){ dialog, which ->  }
             show()
         }
-
         return true
-
     }
-
-
-
-
 }
+
+
+
+
+
