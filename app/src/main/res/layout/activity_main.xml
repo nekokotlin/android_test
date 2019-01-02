@@ -62,11 +62,21 @@
             android:layout_marginStart="1dp" android:layout_marginBottom="3dp"
             app:layout_constraintBottom_toTopOf="@+id/editText"/>
     <Button
-            android:text="Fragmentテスト"
+            android:text="投稿画面へ"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button4"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginBottom="22dp"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toTopOf="@+id/imageView"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            android:layout_marginLeft="84dp" android:layout_marginStart="84dp"
+            app:layout_constraintTop_toTopOf="@+id/textView"/>
+    <Button
+            android:text="一覧画面へ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonToList"
+            app:layout_constraintBaseline_toBaselineOf="@+id/button4" app:layout_constraintStart_toEndOf="@+id/button4"
+            android:layout_marginEnd="7dp" android:layout_marginRight="7dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.333"/>
 
 </android.support.constraint.ConstraintLayout>

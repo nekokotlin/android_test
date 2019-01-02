@@ -4,6 +4,7 @@ import android.app.ProgressDialog.show
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.app.AlertDialog
 import android.util.Log
 import android.view.View
@@ -33,11 +34,7 @@ class ListActivity: AppCompatActivity(), AdapterView.OnItemClickListener, Adapte
         setContentView(R.layout.activity_list)
         Realm.init(this)
         textViewName2.text = userName + "さんの投稿一覧"
-        buttonToCreate.setOnClickListener {
-            val intent = Intent(this@ListActivity, EditActivity::class.java)
-            startActivity(intent)
-        }
-
+        
     }
 
 
@@ -74,6 +71,10 @@ class ListActivity: AppCompatActivity(), AdapterView.OnItemClickListener, Adapte
         val adapter_tweet = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tweet_list)
         ListViewTweet.adapter = adapter_tweet
 
+        ListViewTweet.setOnItemClickListener { parent: AdapterView<*>?, view:View?, position: Int, id:Long ->
+            startActivity((Intent(this, EditActivity::class.java)))
+    }
+
         buttonBackMain.setOnClickListener {
             finish()
         }
@@ -87,8 +88,8 @@ class ListActivity: AppCompatActivity(), AdapterView.OnItemClickListener, Adapte
     }
 
 
-
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        Log.d("ここ", "nnn")
         val selectedTweetDB = tweets[position]!!
         val content = selectedTweetDB.content
         val date = Date()

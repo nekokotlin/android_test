@@ -38,6 +38,11 @@ class MainActivity : AppCompatActivity() {
 //            もし値が0件なら、のパターンを想定する
 //            val tweetDB = realm.where(tweetDB::class.java).findAll()
 
+            val intent = Intent(MainActivity@this, EditActivity::class.java)
+            startActivity(intent)
+        }
+
+        buttonToList.setOnClickListener {
             val intent = Intent(MainActivity@this, ListActivity::class.java)
             startActivity(intent)
         }
