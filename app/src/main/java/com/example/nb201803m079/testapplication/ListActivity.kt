@@ -21,6 +21,8 @@ import kotlin.collections.ArrayList
 
 //import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion.User
 
+var STATUS_EDIT: Int = 0
+
 class ListActivity: AppCompatActivity(), AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
     lateinit var realm: Realm
@@ -34,8 +36,6 @@ class ListActivity: AppCompatActivity(), AdapterView.OnItemClickListener, Adapte
         setContentView(R.layout.activity_list)
         Realm.init(this)
         textViewName2.text = userName + "さんの投稿一覧"
-
-
     }
 
     override fun onResume() {
@@ -70,14 +70,13 @@ class ListActivity: AppCompatActivity(), AdapterView.OnItemClickListener, Adapte
         val selectedTweetDB = tweets[p2]!!
         val content = selectedTweetDB.content
         val date = Date()
-        val status = 0
 
         val intent = Intent(this@ListActivity, EditActivity::class.java)
             .apply {
                 putExtra(getString(R.string.intent_key_content), content)
                 putExtra(getString(R.string.intent_key_date), date)
                 putExtra(getString(R.string.intent_key_position), p2)
-                putExtra(getString(R.string.intent_key_status), status)
+                putExtra(getString(R.string.intent_key_status), 1)
             }
         startActivity(intent)
     }

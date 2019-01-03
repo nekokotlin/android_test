@@ -25,7 +25,11 @@ class EditActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
         Realm.init(this)
-
+        val bundle = intent.extras
+        if(STATUS_EDIT == 1){
+            Log.d("ああああ", STATUS_EDIT.toString())
+            editTextTweet.setText(bundle.getString(getString(R.string.intent_key_content)))
+        }
         textViewName.text = userName
 
         val formatTemplate = SimpleDateFormat("yyyy/MM/dd HH:mm")
@@ -53,8 +57,6 @@ class EditActivity : AppCompatActivity(), View.OnClickListener {
                 .setMessage("内容を入力してください")
                 .setPositiveButton("OK"){dialog, which ->  }
                 .show()
-
-
         } else {
 
             AlertDialog.Builder(this)
