@@ -1,2 +1,2 @@
 # android_test
-- Fragmentを試す
+- Intent, ListView, Adapter等学習した内容を雑多に使う
