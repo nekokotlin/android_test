@@ -46,7 +46,7 @@ class ListActivity: AppCompatActivity(), AdapterView.OnItemClickListener, Adapte
         tweet_list = ArrayList<String>()
 
         tweets.forEach {
-            tweet_list.add(it.id.toString() + ":" + it.content)
+            tweet_list.add(it.content)
         }
 
         adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tweet_list)
@@ -76,7 +76,7 @@ class ListActivity: AppCompatActivity(), AdapterView.OnItemClickListener, Adapte
                 putExtra(getString(R.string.intent_key_content), content)
                 putExtra(getString(R.string.intent_key_date), date)
                 putExtra(getString(R.string.intent_key_position), p2)
-                putExtra(getString(R.string.intent_key_status), 1)
+                putExtra(getString(R.string.intent_key_status), "1")
             }
         startActivity(intent)
     }
