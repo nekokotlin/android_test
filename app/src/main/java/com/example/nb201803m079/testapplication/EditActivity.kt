@@ -42,13 +42,9 @@ class EditActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-
     override fun onResume() {
         super.onResume()
-
         realm = Realm.getDefaultInstance()
-
-
     }
 
     override fun onClick(v: View?) {
@@ -66,10 +62,6 @@ class EditActivity : AppCompatActivity(), View.OnClickListener {
                 .setMessage("投稿しますか？")
                 .setPositiveButton("OK") { dialog, which ->
 
-//                    val bundle = intent.extras
-//                    val p2 = bundle.getInt(getString(R.string.intent_key_position))
-//                    val selectedTweetDB = tweets[p2]!!
-
                     if (STATUS_EDIT == 1) {
                         val bundle = intent.extras
                         val p2 = bundle.getInt(getString(R.string.intent_key_position))
@@ -81,9 +73,7 @@ class EditActivity : AppCompatActivity(), View.OnClickListener {
                         selectedTweetDB.name = userName
                         selectedTweetDB.date = Date()
                         realm.commitTransaction()
-
                     } else {
-
                         realm.beginTransaction()
                         val tweetDB = realm.createObject(tweetDB::class.java)
                         //論理削除でなければ意味がないので消す
@@ -94,18 +84,14 @@ class EditActivity : AppCompatActivity(), View.OnClickListener {
                         tweetDB.id = tweetId
                         tweetDB.date = Date()
                         realm.commitTransaction()
-
                     }
 
                     Snackbar.make(v!!, "投稿が完了しました", Snackbar.LENGTH_SHORT).show()
-
                     editTextTweet.setText("")
                 }
                 .setNegativeButton("Cancel", null)
                 .show()
-
         }
-
     }
 
     override fun onPause() {

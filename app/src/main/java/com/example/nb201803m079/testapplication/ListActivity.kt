@@ -30,7 +30,6 @@ class ListActivity: AppCompatActivity(), AdapterView.OnItemClickListener, Adapte
     lateinit var adapter: ArrayAdapter<String>
     lateinit var tweet_list: ArrayList<String>
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
@@ -99,8 +98,3 @@ class ListActivity: AppCompatActivity(), AdapterView.OnItemClickListener, Adapte
         return true
     }
 }
-
-
-
-
-
